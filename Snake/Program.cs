@@ -11,29 +11,22 @@ namespace Snake
     {
         static void Main(string[] args)
         {
+            Console.SetBufferSize(Console.LargestWindowWidth , Console.LargestWindowHeight);
             Console.OutputEncoding = Encoding.UTF8;
-            //int x1 = 1;
-            //int y1 = 3;
-            //char sym1 = '*';
 
-            Point p1 = new Point(1, 3, '*');
+            //Отрисовка рамочки
+            HorizontalLine upLine = new HorizontalLine(0, 78, 0, '+');
+            HorizontalLine downLine = new HorizontalLine(0, 78, 24, '+');
+            VerticalLine leftLine = new VerticalLine(0, 24, 0, '+');
+            VerticalLine rightLine = new VerticalLine(0, 24, 78, '+');
+            leftLine.Drow();
+            rightLine.Drow();
+            upLine.Drow();
+            downLine.Drow();
 
-            p1.Draw();
-
-
-            //int x2 = 4;
-            //int y2 = 5;
-            //char sym2= '#';
-
-            Point p2 = new Point(4, 5, '#');
-
-            p2.Draw();
-
-            HorizontalLine hLine = new HorizontalLine(5, 10, 8, '+');
-            hLine.Drow();
-
-            VerticalLine vLine = new VerticalLine(1, 10, 5, '|');
-            vLine.Drow();
+            Point p = new Point(4, 5, '*');
+            Snake snake = new Snake(p, 4, Direction.Right);
+            snake.Drow();
 
             Console.ReadLine();
         }
