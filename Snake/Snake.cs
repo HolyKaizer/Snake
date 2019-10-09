@@ -49,34 +49,49 @@ namespace Snake
             return nextPoint;
         }
 
-        public void HandleKeys()
-        {
-            while (true)
+        public void HandleKey(ConsoleKey key)
+        {       
+            switch (key)
             {
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo key = Console.ReadKey();
-                    switch (key.Key)
-                    {
-                        case ConsoleKey.LeftArrow:
-                            direction = Direction.Left;
-                            break;
-                        case ConsoleKey.DownArrow:
-                            direction = Direction.Down;
-                            break;
-                        case ConsoleKey.UpArrow:
-                            direction = Direction.Up;
-                            break;
-                        case ConsoleKey.RightArrow:
-                            direction = Direction.Right;
-                            break;
-                        default:
-                            continue;
-                    }
-                }
-                Thread.Sleep(100);
-                Move();
+                case ConsoleKey.LeftArrow:
+                    direction = Direction.Left;
+                    break;
+                case ConsoleKey.DownArrow:
+                    direction = Direction.Down;
+                    break;
+                case ConsoleKey.UpArrow:
+                    direction = Direction.Up;
+                    break;
+                case ConsoleKey.RightArrow:
+                    direction = Direction.Right;
+                    break;
+            }    
+        }
+
+        internal bool Eat(Point food)
+        {
+            Point head = GetNextPoint();
+            if (head.IsHit(food))
+            {
+                food.sym = head.sym;
+                pList.Add(food);
+                return true;
             }
+            else
+                return false;
+        }
+
+        internal bool IsHitTail()
+        {
+            var head = pList.Last();
+            for(int i = 0; i < pList.Count - 2; i++)
+            {
+                if (head.IsHit(pList[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

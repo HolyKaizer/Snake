@@ -1,0 +1,5 @@
+/Users/anton/git/snake/Snake/bin/Release/Snake.exe.config
+/Users/anton/git/snake/Snake/bin/Release/Snake.exe
+/Users/anton/git/snake/Snake/bin/Release/Snake.pdb
+/Users/anton/git/snake/Snake/obj/Release/Snake.exe
+/Users/anton/git/snake/Snake/obj/Release/Snake.pdb
