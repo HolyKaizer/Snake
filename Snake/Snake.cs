@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Snake
@@ -15,7 +16,7 @@ namespace Snake
     }
     class Snake : Figure
     {
-        Direction direction;
+        public Direction direction;
         public Snake(Point tail, int length, Direction direction)
         {
             pList = new List<Point>();
@@ -46,6 +47,36 @@ namespace Snake
 
             nextPoint.Move(1, direction);
             return nextPoint;
+        }
+
+        public void HandleKeys()
+        {
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            direction = Direction.Left;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            direction = Direction.Down;
+                            break;
+                        case ConsoleKey.UpArrow:
+                            direction = Direction.Up;
+                            break;
+                        case ConsoleKey.RightArrow:
+                            direction = Direction.Right;
+                            break;
+                        default:
+                            continue;
+                    }
+                }
+                Thread.Sleep(100);
+                Move();
+            }
         }
     }
 }

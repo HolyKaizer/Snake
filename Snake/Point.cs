@@ -38,9 +38,9 @@ namespace Snake
             else if (direction == Direction.Left)
                 x -= offset;
             else if (direction == Direction.Up)
-                y += offset;
-            else if (direction == Direction.Down)
                 y -= offset;
+            else if (direction == Direction.Down)
+                y += offset;
         }
 
         public override string ToString()
